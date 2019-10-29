@@ -2,14 +2,8 @@
   <div id="carousel" @mouseover="stopAuto" @mouseout="autoPlay">
     <div class="carousel-box" :style="{width:allCount,'-webkit-transition':transitionConfig,'-webkit-transform':slateX}"
          ref="carousel">
-      <div class="carousel-item" :style="{'-webkit-transform':imgLateX}" v-if="loop">
-        <img :src="imgList[imgList.length-1].img"/>
-      </div>
       <div class="carousel-item" v-for="(item,index)  in imgList" :style="{'-webkit-transform':getImgLateX(index)}">
         <img :src="item.img"/>
-      </div>
-      <div class="carousel-item" :style="{'-webkit-transform':endImgLateX}" v-if="loop">
-        <img :src="imgList[0].img"/>
       </div>
     </div>
     <span class="carousel-left" @click="toLeft">&#8249;</span>
@@ -33,15 +27,15 @@
                         link: 'https://tendcode.com/'
                     },
                     {
-                        img: 'https://tendcode.com/cdn/article/180418/bsblog.png',
+                        img: 'https://tendcode.com/cdn/article/190122/izone-docker.jpg',
                         link: 'https://tendcode.com/'
                     },
                     {
-                        img: 'https://tendcode.com/cdn/article/180418/bsblog.png',
+                        img: 'https://tendcode.com/cdn/article/080414/virtualenv.png',
                         link: 'https://tendcode.com/'
                     },
                     {
-                        img: 'https://tendcode.com/cdn/article/180418/bsblog.png',
+                        img: 'https://tendcode.com/cdn/article/180415/jiandan.png',
                         link: 'https://tendcode.com/'
                     }
                 ],
@@ -55,26 +49,27 @@
                 // 是否循环
                 loop: true,
                 // 持续时间
-                duration: 0.3,
+                duration: 1.5,
                 // 自动播放
                 auto: true,
                 // 自动播放时间间隔
                 autoTime: 2000,
                 imgIndex: 0,
-                durationTime: 0.5,
+                durationTime: 1,
                 dotsIndex: 0,
                 autoer: null,
             }
         },
         computed: {
             allCount() {
-                //   console.log(this.imgList.length)
-                //   console.log(this.imgWidth)
+                // console.log(this.imgList.length, this.imgWidth)
                 // console.log((this.imgList.length*this.imgWidth)+'px')
                 return (this.imgList.length * this.imgWidth) + 'px';
             },
             slateX() {
                 // console.log('translate3d(' + (-this.imgIndex * this.imgWidth) + 'px,0,0)')
+                if (this.imgIndex == 0)
+                    this.imgIndex = 1;
                 return 'translate3d(' + (-this.imgIndex * this.imgWidth) + 'px,0,0)'
             },
             transitionConfig() {
@@ -98,33 +93,26 @@
         },
         created() {
             this.imgIndex = this.dotsIndex = this.initIndex;
-
             this.durationTime = this.duration;
-
             if (this.auto) this.autoPlay();
         },
         methods: {
             getImgLateX(i) {
-                // console.log(i)
                 let width = this.imgWidth * (i + 1)
-                // console.log(width)
-                // return 'translate3d(' + (width) + 'px,0,0)'
+                // console.log(i, width)
+                return 'translate3d(' + (width) + 'px,0,0)'
             },
             toLeft() {
                 if (this.loop) {
                     this.imgIndex--;
                     this.dotsIndex--;
                     if (this.dotsIndex <= -1) this.dotsIndex = this.imgList.length - 1;
-
                     if (this.imgIndex <= -2) this.loopFn('left');
-
                 } else {
                     if (this.imgIndex == 0) return this.dotsIndex = this.imgIndex = this.imgList.length - 1;
                     this.imgIndex--;
                     this.dotsIndex--;
-
                 }
-
             },
             toRight() {
                 if (this.loop) {
@@ -166,7 +154,6 @@
                         this.toRight();
                     }, this.autoTime)
                 }
-
             },
             stopAuto() {
                 if (this.auto) return clearInterval(this.autoer);
@@ -182,15 +169,14 @@
     position: relative;
     overflow: hidden;
     width: 750px;
-    height: 300px;
+    height: 400px;
     margin-left: auto;
     margin-right: auto;
-    padding-top: 50px;
   }
 
   .carousel-left, .carousel-right {
     position: absolute;
-    top: 56%;
+    top: 50%;
     display: inline-block;
     transform: translateY(-50%);
     color: #fff;
@@ -246,11 +232,11 @@
     position: absolute;
     top: 0;
     left: 0;
-    height: 300px;
+    height: 400px;
   }
 
   .carousel-item img {
     width: 100%;
-    height: 300px;
+    height: 400px;
   }
 </style>

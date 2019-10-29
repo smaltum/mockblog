@@ -8,6 +8,8 @@
       <a><img src="https://tendcode.com/static/blog/img/github.png"></a>
     </div>
 
+    <!--    热门文章、最近更新-->
+
     <div class="right_bar_item_2 ">
       <div class=" right_bar_item_1 right_bar_item_title">
         <span>分类查看</span>
@@ -62,9 +64,10 @@
 
 <style scoped>
   .right_bar_body {
-    width: 270px;
+    /*overflow: hidden;*/
+    width: 300px;
     float: right;
-    margin-right: 6%;
+    /*margin-right: 6%;*/
     padding: 30px 5px 0px 5px;
     display: flex;
     flex-direction: column;
@@ -155,5 +158,12 @@
     background-color: #eeeeef;
     margin-left: 10px;
   }
+
+  @media (max-width: 1200px) {
+    .right_bar_body {
+      display: none;
+    }
+  }
+
 
 </style>
