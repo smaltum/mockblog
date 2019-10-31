@@ -1,6 +1,6 @@
 <template>
   <div id="carousel" @mouseover="stopAuto" @mouseout="autoPlay">
-    <div class="carousel-box" :style="{width:allCount,'-webkit-transition':transitionConfig,'-webkit-transform':slateX}"
+    <div :style="{width:allCount,'-webkit-transition':transitionConfig,'-webkit-transform':slateX}"
          ref="carousel">
       <div class="carousel-item" v-for="(item,index)  in imgList" :style="{'-webkit-transform':getImgLateX(index)}">
         <img :src="item.img"/>
@@ -39,6 +39,8 @@
                         link: 'https://tendcode.com/'
                     }
                 ],
+                //屏幕宽度
+                scWidth: 0,
                 // 图片宽
                 imgWidth: 750,
                 // 指示器
@@ -51,7 +53,7 @@
                 // 持续时间
                 duration: 1.5,
                 // 自动播放
-                auto: true,
+                auto: false,
                 // 自动播放时间间隔
                 autoTime: 2000,
                 imgIndex: 0,
@@ -62,8 +64,6 @@
         },
         computed: {
             allCount() {
-                // console.log(this.imgList.length, this.imgWidth)
-                // console.log((this.imgList.length*this.imgWidth)+'px')
                 return (this.imgList.length * this.imgWidth) + 'px';
             },
             slateX() {
@@ -132,9 +132,7 @@
             loopFn(type) {
                 const dur = this.durationTime;
                 this.durationTime = 0;
-
                 this.imgIndex = type == 'right' ? 0 : this.imgList.length - 1;
-
                 setTimeout(() => {
                     this.$nextTick(function () {
                         this.durationTime = dur;
@@ -159,6 +157,15 @@
                 if (this.auto) return clearInterval(this.autoer);
             }
         },
+        mounted() {
+            const me = this;
+            window.onresize = () => {
+                return (() => {
+                    window.screenWidth = document.body.clientWidth;
+                    me.scWidth = window.screenWidth;
+                })()
+            }
+        }
     }
 
 </script>
@@ -168,10 +175,14 @@
   #carousel {
     position: relative;
     overflow: hidden;
-    width: 750px;
+    width: 100%;
     height: 400px;
+    max-width: 750px;
+    max-height: 400px;
     margin-left: auto;
     margin-right: auto;
+    top: 90px;
+    z-index: -1;
   }
 
   .carousel-left, .carousel-right {
@@ -228,15 +239,68 @@
   }
 
   .carousel-item {
-    width: 750px;
+    width: 100%;
+    height: 400px;
+    max-width: 750px;
     position: absolute;
     top: 0;
     left: 0;
-    height: 400px;
   }
 
   .carousel-item img {
     width: 100%;
-    height: 400px;
+    height: auto;
   }
+
+  @media (min-width: 720px) and (max-width: 1200px) {
+    #carousel {
+      position: relative;
+      overflow: hidden;
+      width: 94%;
+      height: 300px;
+      margin-left: auto;
+      margin-right: auto;
+      top: 90px;
+      z-index: -1;
+    }
+
+    .carousel-item {
+      width: 100%;
+      height: 300px;
+      max-width: 750px;
+    }
+
+    .carousel-item img {
+      width: 100%;
+      height: auto;
+      max-width: 100%;
+      max-height: 100%;
+    }
+  }
+
+  @media (max-width: 719px) {
+    #carousel {
+      position: relative;
+      overflow: hidden;
+      width: 96%;
+      height: 240px;
+      margin-left: auto;
+      margin-right: auto;
+      top: 60px;
+      z-index: -1;
+    }
+
+    .carousel-item {
+      position: static;
+      width: 100%;
+      height: 240px;
+      position: absolute;
+    }
+
+    .carousel-item img {
+      height: auto;
+      max-width: 100%;
+    }
+  }
+
 </style>

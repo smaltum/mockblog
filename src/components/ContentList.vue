@@ -119,7 +119,6 @@
     }
 </script>
 
-
 <style scoped>
 
   /*整体*/
@@ -127,7 +126,7 @@
     position: relative;
     overflow: hidden;
     width: 80%;
-    max-width: 750px;
+    max-width: 856px;
     padding-bottom: 30px;
     margin: 100px auto;
     z-index: -1;
@@ -270,7 +269,7 @@
     border-radius: 40px;
   }
 
-  @media (min-width: 720px) and (max-width: 1200px) {
+  @media (min-width: 880px) and (max-width: 1200px) {
     /*整体*/
     .content_list {
       position: relative;

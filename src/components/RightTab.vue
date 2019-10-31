@@ -9,7 +9,6 @@
     </div>
 
     <!--    热门文章、最近更新-->
-
     <div class="right_bar_item_2 ">
       <div class=" right_bar_item_1 right_bar_item_title">
         <span>分类查看</span>
@@ -64,10 +63,10 @@
 
 <style scoped>
   .right_bar_body {
-    /*overflow: hidden;*/
     width: 300px;
     float: right;
-    /*margin-right: 6%;*/
+    margin-top: 60px;
+    margin-right: 6%;
     padding: 30px 5px 0px 5px;
     display: flex;
     flex-direction: column;
