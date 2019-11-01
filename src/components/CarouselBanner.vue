@@ -3,7 +3,7 @@
     <div class="carousel-item" v-for="(item,index) in imgList"
          :class="currentIndex==index?bannerActive:''">
       <a href="#">
-        <img :src="item.img">
+<!--        <img :src="item.img">-->
       </a>
     </div>
   </div>
@@ -84,20 +84,18 @@
   .carousel-body {
     position: relative;
     overflow: hidden;
-    top: 90px;
-    width: 70%;
+    padding: 10px;
+    width: 67%;
     height: 365px;
-    max-width: 770px;
-    background-color: #f78585;
-    margin-left: auto;
-    margin-right: auto;
+    max-width: 756px;
+    background-color: #17A2B8;
   }
 
   .carousel-item {
     background-color: #42b983;
     width: 100%;
     float: left;
-    display: none;
+    /*display: none;*/
     /*transition:display 2s;*/
     /*-webkit-transition:display 2s;*/
   }
@@ -108,9 +106,21 @@
   }
 
   .active {
-    display: block;
-    transition:display 2s;
-    -webkit-transition:display 2s;
+    /*display: block;*/
+    /*transition: display 2s;*/
+    /*-webkit-transition: display 2s;*/
+    animation: move-right 5s;
+    -webkit-animation: move-right 5s; /* Safari 与 Chrome */
   }
 
+  @keyframes move-right{
+    from {background: red;}
+    to {background: yellow;}
+  }
+
+  @-webkit-keyframes move-right /* Safari 与 Chrome */
+  {
+    from {background: red;}
+    to {background: yellow;}
+  }
 </style>

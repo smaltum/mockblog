@@ -40,7 +40,7 @@
 
   body {
     line-height: 1;
-    background: #eeeeef;
+    background: #f9f9f9;
   }
 
   ol, ul {

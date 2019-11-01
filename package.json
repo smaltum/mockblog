@@ -10,8 +10,6 @@
     "build": "node build/build.js"
   },
   "dependencies": {
-    "sockjs-client": "^1.4.0",
-    "stompjs": "^2.3.3",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1"
   },

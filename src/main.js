@@ -3,7 +3,7 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-Vue.prototype.$globalWebsocketUrl= 'ws://192.168.162.103:9096/pfp'
+Vue.prototype.$globalWebsocketUrl= '192.168.162.103:9096/pfp'
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
