@@ -3,7 +3,7 @@
     <div class="carousel-item" v-for="(item,index) in imgList"
          :class="currentIndex==index?bannerActive:''">
       <a href="#">
-<!--        <img :src="item.img">-->
+        <img :src="item.img">
       </a>
     </div>
   </div>
@@ -109,18 +109,39 @@
     /*display: block;*/
     /*transition: display 2s;*/
     /*-webkit-transition: display 2s;*/
-    animation: move-right 5s;
-    -webkit-animation: move-right 5s; /* Safari 与 Chrome */
+    transition-duration: 3s;
+    animation: move-right 3s;
+    -webkit-animation: move-right 3s; /* Safari 与 Chrome */
   }
 
-  @keyframes move-right{
-    from {background: red;}
-    to {background: yellow;}
+  @keyframes move-right {
+    0%{                       /*时间达到0%时坐标位置为（0,0）*/
+      transform:translate(0px,0px);/*应用该动画的标签位置为（0,0）*/
+    }
+    20%{
+      transform:translate(100px,80px);
+    }
+    50%{
+      transform:translate(200px,0px);
+    }
+    100%{
+      transform:translate(400px,80px);
+    }
   }
 
   @-webkit-keyframes move-right /* Safari 与 Chrome */
   {
-    from {background: red;}
-    to {background: yellow;}
+    0%{                       /*时间达到0%时坐标位置为（0,0）*/
+      transform:translate(0px,0px);/*应用该动画的标签位置为（0,0）*/
+    }
+    20%{
+      transform:translate(100px,80px);
+    }
+    50%{
+      transform:translate(200px,0px);
+    }
+    100%{
+      transform:translate(400px,80px);
+    }
   }
 </style>
